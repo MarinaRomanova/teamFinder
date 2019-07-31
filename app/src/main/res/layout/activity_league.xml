@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeagueActivity">
+    tools:context=".Controller.LeagueActivity">
 
     <ImageView
         android:id="@+id/background"
@@ -53,28 +53,31 @@
             <ToggleButton
                 android:id="@+id/mens"
                 style="@style/swoosh_button"
+                android:onClick="onMensClicked"
                 android:text="@string/mens"
                 android:textAllCaps="false"
                 android:textOff="@string/mens"
-                android:textOn="@string/mens" />
+                android:textOn="@string/mens"/>
 
             <ToggleButton
                 android:id="@+id/womens"
                 style="@style/swoosh_button"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
+                android:onClick="onWomensClicked"
                 android:text="@string/womens"
                 android:textAllCaps="false"
                 android:textOff="@string/womens"
-                android:textOn="@string/womens" />
+                android:textOn="@string/womens"/>
 
             <ToggleButton
                 android:id="@+id/co_ed"
                 style="@style/swoosh_button"
+                android:onClick="onCoEdClicked"
                 android:text="@string/co_ed"
                 android:textAllCaps="false"
                 android:textOff="@string/co_ed"
-                android:textOn="@string/co_ed" />
+                android:textOn="@string/co_ed"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -86,8 +89,8 @@
         android:layout_margin="16dp"
         android:background="@drawable/swoosh_button"
         android:fontFamily="@font/montserrat"
+        android:onClick="leagueNextClicked"
         android:text="@string/next"
         android:textColor="@color/colorAccent"
-        android:onClick="leagueNextClicked"
         tools:targetApi="jelly_bean" />
 </FrameLayout>
