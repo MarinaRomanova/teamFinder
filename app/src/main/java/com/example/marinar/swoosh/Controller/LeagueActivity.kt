@@ -5,13 +5,26 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.example.marinar.swoosh.Model.Player
 import com.example.marinar.swoosh.R
-import com.example.marinar.swoosh.Utils.EXTRA_LEAGUE
+import com.example.marinar.swoosh.Utils.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : AppCompatActivity() {
 
-    var selectedLeague = ""
+    var player = Player("", "")
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(savedInstanceState != null){
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,21 +35,20 @@ class LeagueActivity : AppCompatActivity() {
         womens.isChecked = false;
         co_ed.isChecked = false;
 
-        selectedLeague = getString(R.string.mens)
+        player.league = getString(R.string.mens)
     }
 
     fun onWomensClicked(view: View) {
         mens.isChecked = false;
         co_ed.isChecked = false;
 
-        selectedLeague = getString(R.string.womens)
+        player.league = getString(R.string.womens)
     }
 
     fun onCoEdClicked(view: View) {
         womens.isChecked = false;
         mens.isChecked = false;
-
-        selectedLeague = getString(R.string.co_ed)
+        player.league = getString(R.string.co_ed)
 
     }
 
@@ -44,7 +56,7 @@ class LeagueActivity : AppCompatActivity() {
 
         if (mens.isChecked || womens.isChecked || co_ed.isChecked) {
             val skillIntent = Intent(this, SkillActivity::class.java)
-            skillIntent.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillIntent.putExtra(EXTRA_PLAYER, player)
             startActivity(skillIntent)
         } else {
             Toast.makeText(this, getString(R.string.select_league_toast), Toast.LENGTH_SHORT).show()

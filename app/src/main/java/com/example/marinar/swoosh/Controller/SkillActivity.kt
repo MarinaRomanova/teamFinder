@@ -5,28 +5,37 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.example.marinar.swoosh.Model.Player
 import com.example.marinar.swoosh.R
-import com.example.marinar.swoosh.Utils.EXTRA_LEAGUE
-import com.example.marinar.swoosh.Utils.EXTRA_SKILL
+import com.example.marinar.swoosh.Utils.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_skill.*
 
 class SkillActivity : AppCompatActivity() {
 
-    var league = ""
-    var skillSelected = ""
+    lateinit var player: Player
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(savedInstanceState != null){
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
-        league = intent.getStringExtra(EXTRA_LEAGUE)
-        println(league)
+        player = intent.getParcelableExtra(EXTRA_PLAYER)
     }
 
     fun onFinishClicked(view: View) {
         if (ballerBtn.isChecked || beginnerBtn.isChecked) {
             val finishIntent = Intent(this, FinishActivity::class.java)
-            finishIntent.putExtra(EXTRA_LEAGUE, league)
-            finishIntent.putExtra(EXTRA_SKILL, skillSelected)
+            finishIntent.putExtra(EXTRA_PLAYER, player)
             startActivity(finishIntent)
         } else {
             Toast.makeText(this, getString(R.string.select_skill_toast), Toast.LENGTH_SHORT).show()
@@ -35,11 +44,11 @@ class SkillActivity : AppCompatActivity() {
 
     fun onBeginnerClicked(view: View) {
         ballerBtn.isChecked = false
-        skillSelected = getString(R.string.beginner)
+        player.skill = getString(R.string.beginner)
     }
 
     fun onBallerClicked(view: View) {
         beginnerBtn.isChecked = false
-        skillSelected = getString(R.string.baller)
+        player.skill = getString(R.string.baller)
     }
 }
