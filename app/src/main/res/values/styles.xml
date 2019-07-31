@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="textStyle" >
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:color">@color/colorAccent</item>
+    </style>
+
+    <style name="capitalTextStyle" parent="textStyle">
+       <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="swoosh_button">
+        <item name="android:background">@drawable/swoosh_toggle</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>
