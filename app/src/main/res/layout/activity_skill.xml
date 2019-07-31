@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SkillActivity">
+    tools:context=".Controller.SkillActivity">
 
     <ImageView
         android:id="@+id/background"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ToggleButton
-            android:id="@+id/toggleButton"
+            android:id="@+id/beginnerBtn"
             style="@style/swoosh_button"
             android:layout_width="0dp"
             android:layout_marginLeft="8dp"
@@ -75,10 +75,11 @@
             android:text="@string/beginner"
             android:textAllCaps="false"
             android:textOff="@string/beginner"
-            android:textOn="@string/beginner" />
+            android:textOn="@string/beginner"
+            android:onClick="onBeginnerClicked"/>
 
         <ToggleButton
-            android:id="@+id/toggleButton2"
+            android:id="@+id/ballerBtn"
             style="@style/swoosh_button"
             android:layout_width="0dp"
             android:layout_marginLeft="8dp"
@@ -88,11 +89,12 @@
             android:text="@string/baller"
             android:textAllCaps="false"
             android:textOff="@string/baller"
-            android:textOn="@string/baller" />
+            android:textOn="@string/baller"
+            android:onClick="onBallerClicked"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/getStartedBtn"
+        android:id="@+id/finishBtn"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -108,6 +110,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onFinishClicked"
         tools:ignore="UnusedAttribute" />
 
 </android.support.constraint.ConstraintLayout>
